@@ -1,8 +1,10 @@
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
+
 from data.tea_data import teas_list
 from config.environment import db_URI
-from sqlalchemy import create_engine
-from models.tea import Base
+from models.base import Base
+from models.tea import TeaModel
 
 
 engine = create_engine(db_URI)
@@ -25,4 +27,4 @@ try:
     print("Database seeding complete! 👋")
 
 except Exception as e:
-    print("An error occurred:", e)
+    print(f"Error seeding database: {e}")
