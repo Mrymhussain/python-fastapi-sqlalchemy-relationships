@@ -1,6 +1,8 @@
-from sqlalchemy import Column, String, Boolean, Integer
+from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy.orm import relationship
 
-from models.base import BaseModel
+from .base import BaseModel
+from .comment import CommentModel
 
 
 class TeaModel(BaseModel):
@@ -9,3 +11,8 @@ class TeaModel(BaseModel):
     name = Column(String, unique=True)
     in_stock = Column(Boolean)
     rating = Column(Integer)
+
+    comments = relationship(
+        "CommentModel",
+        back_populates="tea"
+    )

@@ -1,10 +1,12 @@
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 
-from data.tea_data import teas_list
 from config.environment import db_URI
 from models.base import Base
 from models.tea import TeaModel
+from models.comment import CommentModel
+
+from data.tea_data import teas_list
 
 
 engine = create_engine(db_URI)
