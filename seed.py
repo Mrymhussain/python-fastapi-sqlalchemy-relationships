@@ -5,8 +5,7 @@ from config.environment import db_URI
 from models.base import Base
 from models.tea import TeaModel
 from models.comment import CommentModel
-
-from data.tea_data import teas_list
+from data.tea_data import teas_list, comments_list
 
 
 engine = create_engine(db_URI)
@@ -22,11 +21,16 @@ try:
     print("Seeding the database...")
 
     db = SessionLocal()
+
     db.add_all(teas_list)
     db.commit()
+
+    db.add_all(comments_list)
+    db.commit()
+
     db.close()
 
     print("Database seeding complete! 👋")
 
 except Exception as e:
-    print(f"Error seeding database: {e}")
+    print("An error occurred:", e)
