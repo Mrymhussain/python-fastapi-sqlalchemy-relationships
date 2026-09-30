@@ -11,11 +11,12 @@ class CommentModel(BaseModel):
 
     tea_id = Column(
         Integer,
-        ForeignKey("teas.id"),
+        ForeignKey("teas.id", ondelete="CASCADE"),
         nullable=False
     )
 
     tea = relationship(
         "TeaModel",
-        back_populates="comments"
+        back_populates="comments",
+        passive_deletes=True
     )

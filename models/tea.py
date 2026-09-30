@@ -14,5 +14,6 @@ class TeaModel(BaseModel):
 
     comments = relationship(
         "CommentModel",
-        back_populates="tea"
+        back_populates="tea",
+        cascade="all, delete-orphan"
     )

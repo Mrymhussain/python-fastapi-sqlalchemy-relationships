@@ -1,16 +1,11 @@
 from fastapi import FastAPI
 from controllers.teas import router as TeasRouter
 from database import engine
-from models.tea import Base
+from models.base import BaseModel
 
-
-Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-app.include_router(TeasRouter, prefix="/api")
+BaseModel.metadata.create_all(bind=engine)
 
-
-@app.get("/")
-def home():
-    return {"message": "Home Page"}
+app.include_router(TeasRouter)
